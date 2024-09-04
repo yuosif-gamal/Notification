@@ -12,9 +12,17 @@ public class EmailController {
     private final EmailService emailService;
 
     @PostMapping("/email")
-    public void sendEmail(@RequestParam String to,
+    public void sendNotReservedEmail(@RequestParam String to,
                           @RequestParam String userName,
-                          @RequestParam String itemName) {
-        emailService.sendItemNotReservedEmail(to, userName, itemName);
+                          @RequestParam String itemName,
+                          @RequestParam Long id) {
+        emailService.sendItemNotReservedEmail(to, userName, itemName,id);
+    }
+    @PostMapping("/email/register")
+    public void sendRegistrationCompleteEmail(
+            @RequestParam String to,
+                          @RequestParam String userName,
+                          @RequestParam Long id) {
+        emailService.sendRegistrationCompleteEmail(to, userName, id);
     }
 }
