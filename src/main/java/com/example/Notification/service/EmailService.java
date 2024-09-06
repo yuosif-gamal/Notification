@@ -26,9 +26,8 @@ public class EmailService {
 
     @Value("${email.unsubscribeServiceUrl}")
     String ApiGatewayURL;
-
     public void sendEmail(Map<String, Object> mailInfo) throws IOException {
-        mailInfo.put("unsubscribeLink", ApiGatewayURL);
+        mailInfo.put("unsubscribeLink" , ApiGatewayURL);
         String templateName = mailInfo.get("type") + ".html";
 
         String templateDir = "D:\\spring boot\\Notification\\src\\main\\resources\\templates";
@@ -48,10 +47,9 @@ public class EmailService {
             throw new FileNotFoundException("Email Template file not found: " + fileResource.getAbsolutePath());
         }
     }
-
     private String getHtmlContent(File fileResource) throws IOException {
         try (FileInputStream fileInputStream = new FileInputStream(fileResource)) {
-            return htmlContent = StreamUtils.copyToString(fileInputStream, StandardCharsets.UTF_8);
+           return htmlContent = StreamUtils.copyToString(fileInputStream, StandardCharsets.UTF_8);
         }
     }
 
@@ -62,7 +60,6 @@ public class EmailService {
         }
         return htmlContent;
     }
-
 
     private void sendEmailWithHtml(String to, String subject, String htmlContent) {
         try {
