@@ -23,6 +23,7 @@ public class EmailService {
 
     private final JavaMailSender emailSender;
     private String htmlContent;
+    private static final String TEMPLATE_DIR = "D:\\spring boot\\Notification\\src\\main\\resources\\templates";
 
     @Value("${email.unsubscribeServiceUrl}")
     String ApiGatewayURL;
@@ -30,9 +31,7 @@ public class EmailService {
         mailInfo.put("unsubscribeLink" , ApiGatewayURL);
         String templateName = mailInfo.get("type") + ".html";
 
-        String templateDir = "D:\\spring boot\\Notification\\src\\main\\resources\\templates";
-
-        File fileResource = new File(templateDir, templateName);
+        File fileResource = new File(TEMPLATE_DIR, templateName);
 
         validateExistingType(fileResource);
         htmlContent = getHtmlContent(fileResource);
