@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.Notification.service.EmailService;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Map;
 
 @RestController
@@ -15,7 +17,7 @@ public class EmailController {
     private final EmailService emailService;
 
     @PostMapping("/email")
-    public void sendEmail(@RequestBody Map<String, Object> emailInfo) {
+    public void sendEmail(@RequestBody Map<String, Object> emailInfo) throws IOException {
         emailService.sendEmail(emailInfo);
     }
 }
